@@ -1,0 +1,1552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://vista.co.nz/services/WSVistaWebClient.DataTypes/1/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1">
+      <s:import namespace="http://vista.co.nz/services/WSVistaWebClient.DataTypes/1/" />
+      <s:element name="GetOrderRequest" type="tns:GetOrderRequest" />
+      <s:complexType name="GetOrderRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProcessOrderValue" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="BookingMode" nillable="true" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetOrderResult" type="tns:GetOrderResponse" />
+      <s:complexType name="GetOrderResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:ResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Order" type="s1:Order" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ResultCode">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="UnexpectedError" />
+          <s:enumeration value="DBError" />
+          <s:enumeration value="MembershipError" />
+          <s:enumeration value="InvalidRequestData" />
+          <s:enumeration value="CinemaConnectError" />
+          <s:enumeration value="LoyaltyConnectError" />
+          <s:enumeration value="InsufficientPoints" />
+          <s:enumeration value="SeatsUnavailable" />
+          <s:enumeration value="FailedSeatDataRetrieve" />
+          <s:enumeration value="FailedOrderValueProcess" />
+          <s:enumeration value="PrepareOrderForCompleteError" />
+          <s:enumeration value="PaymentDeclined" />
+          <s:enumeration value="PaymentSystemError" />
+          <s:enumeration value="PostChargeCommitError" />
+          <s:enumeration value="UnpaidBookingsDisallowed" />
+          <s:enumeration value="VouchersDisallowed" />
+          <s:enumeration value="MemberNotFound" />
+          <s:enumeration value="MemberPasswordIncorrect" />
+          <s:enumeration value="LoyaltyTimeout" />
+          <s:enumeration value="LoyaltyUserNameAlreadyExists" />
+          <s:enumeration value="LoyaltyNotSupportedAtCinema" />
+          <s:enumeration value="MemberEmailIncorrect" />
+          <s:enumeration value="MemberLoginResetDisallowed" />
+          <s:enumeration value="PaymentSuccessWithErrors" />
+          <s:enumeration value="PaymentVoidSuccessPostCommit" />
+          <s:enumeration value="PaymentVoidSuccessPreCommit" />
+          <s:enumeration value="PaymentVoidSuccessPayTotalMismatch" />
+          <s:enumeration value="FailedToAllocateCard" />
+          <s:enumeration value="LoyaltyMemberAlreadyExists" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CancelOrderRequest" type="tns:CancelOrderRequest" />
+      <s:complexType name="CancelOrderRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CancelOrderResult" type="tns:Response" />
+      <s:complexType name="Response">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:ResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ResetOrderExpiryRequest" type="tns:ResetOrderExpiryRequest" />
+      <s:complexType name="ResetOrderExpiryRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ResetOrderExpiryResult" type="tns:ResetOrderExpiryResponse" />
+      <s:complexType name="ResetOrderExpiryResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:ResultCode" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderLastUpdated" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddTicketsRequest" type="tns:AddTicketsRequest" />
+      <s:complexType name="AddTicketsRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CinemaId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TicketTypes" type="tns:ArrayOfTicketType" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnOrder" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnSeatData" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProcessOrderValue" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="UserSelectedSeatingSupported" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="SkipAutoAllocation" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IncludeAllSeatPriorities" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IncludeSeatNumbers" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExcludeAreasWithoutTickets" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnDiscountInfo" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="BookingFeeOverride" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="BookingMode" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReorderSessionTickets" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="MultiSessionTicketOrder" type="tns:ArrayOfSessionTicketOrder" />
+              <s:element minOccurs="0" maxOccurs="1" name="CustomerLanguageTag" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnSeatDataFormat" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="SelectedSeats" type="tns:ArrayOfSelectedSeat" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfTicketType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TicketType" nillable="true" type="s1:TicketType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSessionTicketOrder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SessionTicketOrder" nillable="true" type="s1:SessionTicketOrder" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSelectedSeat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectedSeat" nillable="true" type="tns:SelectedSeat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SelectedSeat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AreaCategoryCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AreaNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RowIndex" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddTicketsResult" type="tns:AddTicketsResponse" />
+      <s:complexType name="AddTicketsResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order" type="s1:Order" />
+              <s:element minOccurs="0" maxOccurs="1" name="SeatData" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AreaSummaryData" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SeatDataLength" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="SeatsNotAllocated" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="AvailableSeats" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="MaxSeatsPerRow" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExtendedResultCode" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="SeatLayoutData" type="tns:Theatre" />
+              <s:element minOccurs="0" maxOccurs="1" name="SessionStatuses" type="tns:ArrayOfSessionStatus" />
+              <s:element minOccurs="0" maxOccurs="1" name="RedemptionsRemainingForVouchers" type="tns:ArrayOfRedemptionsRemainingForVoucher" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Theatre">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Areas" type="tns:ArrayOfArea" />
+          <s:element minOccurs="0" maxOccurs="1" name="AreaCategories" type="tns:ArrayOfAreaCategory" />
+          <s:element minOccurs="1" maxOccurs="1" name="BoundaryRight" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="BoundaryLeft" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="BoundaryTop" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScreenStart" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ScreenWidth" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfArea">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Area" nillable="true" type="tns:Area" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Area">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Number" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AreaCategoryCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescriptionAlt" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfSeats" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsAllocatedSeating" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasSofaSeatingEnabled" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Left" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Top" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Height" nillable="true" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="Width" nillable="true" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rows" type="tns:ArrayOfRow" />
+          <s:element minOccurs="1" maxOccurs="1" name="RowCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnCount" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRow">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Row" nillable="true" type="tns:Row" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Row">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PhysicalName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Seats" type="tns:ArrayOfSeat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSeat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Seat" nillable="true" type="tns:Seat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Seat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Position" type="tns:SeatPosition" />
+          <s:element minOccurs="1" maxOccurs="1" name="Priority" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:SeatStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatStyle" type="tns:SeatStyle" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeatsInGroup" type="tns:ArrayOfSeatPosition" />
+          <s:element minOccurs="1" maxOccurs="1" name="OriginalStatus" type="tns:SeatStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SeatPosition">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AreaNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RowIndex" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SeatStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Empty" />
+          <s:enumeration value="Sold" />
+          <s:enumeration value="House" />
+          <s:enumeration value="Special" />
+          <s:enumeration value="Reserved" />
+          <s:enumeration value="Broken" />
+          <s:enumeration value="Placeholder" />
+          <s:enumeration value="Companion" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="SeatStyle">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="SofaLeft" />
+          <s:enumeration value="SofaMiddle" />
+          <s:enumeration value="SofaRight" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfSeatPosition">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SeatPosition" nillable="true" type="tns:SeatPosition" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAreaCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AreaCategory" nillable="true" type="tns:AreaCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AreaCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AreaCategoryCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatsToAllocate" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatsAllocatedCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatsNotAllocatedCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelectedSeats" type="tns:ArrayOfSeatPosition" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsInSeatDeliveryEnabled" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSessionStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SessionStatus" nillable="true" type="s1:SessionStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRedemptionsRemainingForVoucher">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RedemptionsRemainingForVoucher" nillable="true" type="s1:RedemptionsRemainingForVoucher" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddSeasonPassTicketsRequest" type="tns:AddSeasonPassTicketsRequest" />
+      <s:complexType name="AddSeasonPassTicketsRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalClientClass" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalClientId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalClientName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CinemaId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeasonPasses" type="tns:ArrayOfSeasonPass" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnOrder" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserSelectedSeatingSupported" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SkipAutoAllocation" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookingFeeOverride" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookingMode" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSeasonPass">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SeasonPass" nillable="true" type="s1:SeasonPass" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddSeasonPassTicketsResult" type="tns:AddSeasonPassTicketsResponse" />
+      <s:complexType name="AddSeasonPassTicketsResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Order" type="s1:Order" />
+          <s:element minOccurs="0" maxOccurs="1" name="SessionStatuses" type="tns:ArrayOfSessionStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddConcessionsRequest" type="tns:AddConcessionsRequest" />
+      <s:complexType name="AddConcessionsRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CinemaId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Concessions" type="tns:ArrayOfConcession" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnOrder" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProcessOrderValue" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="BookingMode" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OrderDelivery" type="s1:OrderDelivery" />
+              <s:element minOccurs="1" maxOccurs="1" name="GiftStoreOrder" nillable="true" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="InSeatOrderDeliveryInfo" type="s1:InSeatOrderDeliveryInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfConcession">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Concession" nillable="true" type="s1:Concession" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddConcessionsResult" type="tns:AddConcessionsResponse" />
+      <s:complexType name="AddConcessionsResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:ResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Order" type="s1:Order" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExtendedResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSessionSeatDataRequest" type="s1:GetSessionSeatDataRequest" />
+      <s:element name="GetSessionSeatDataResult" type="tns:GetSessionSeatDataResponse" />
+      <s:complexType name="GetSessionSeatDataResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:ResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Order" type="s1:Order" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeatData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AreaSummaryData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeatLayoutData" type="tns:Theatre" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatDataLength" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatsNotAllocated" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetSelectedSeatsRequest" type="s1:SetSelectedSeatsRequest" />
+      <s:element name="SetSelectedSeatsResult" type="tns:SetSelectedSeatsResponse" />
+      <s:complexType name="SetSelectedSeatsResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:ResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="Order" type="s1:Order" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ExternalPaymentStartingRequest" type="tns:ExternalPaymentStartingRequest" />
+      <s:complexType name="ExternalPaymentStartingRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="AutoCompleteOrder" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="ExternalPaymentInfo" type="s1:ExternalPaymentInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="OrderCompletionInfo" type="s1:OrderCompletionInfo" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ExternalPaymentStartingResult" type="tns:ExternalPaymentStartingResponse" />
+      <s:complexType name="ExternalPaymentStartingResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ExtendedResultCode" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="PaymentRedirectUrl" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ExternalPaymentFinishingRequest" type="tns:ExternalPaymentFinishingRequest" />
+      <s:complexType name="ExternalPaymentFinishingRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="WpmToken" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ExternalPaymentFinishingResult" type="tns:ExternalPaymentFinishingResponse" />
+      <s:complexType name="ExternalPaymentFinishingResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ExtendedResultCode" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="PaymentRedirectUri" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CompleteOrderRequest" type="tns:CompleteOrderRequest" />
+      <s:complexType name="CompleteOrderRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PaymentInfo" type="s1:PaymentInfo" />
+              <s:element minOccurs="0" maxOccurs="1" name="PaymentInfoCollection" type="tns:ArrayOfPaymentInfo" />
+              <s:element minOccurs="1" maxOccurs="1" name="PerformPayment" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="CustomerEmail" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CustomerPhone" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CustomerName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="GeneratePrintStream" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnPrintStream" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="UnpaidBooking" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="PrintTemplateName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OptionalMemberId" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="OptionalReturnMemberBalances" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="CustomerZipCode" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="BookingMode" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="PrintStreamType" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="GenerateConcessionVoucherPrintStream" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="PassTypesRequestedForOrder" type="s1:IncludedAttachments" />
+              <s:element minOccurs="1" maxOccurs="1" name="UseAlternateLanguage" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="BookingNotes" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PickupName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CustomerLanguageTag" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfPaymentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PaymentInfo" nillable="true" type="s1:PaymentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CompleteOrderResult" type="tns:CompleteOrderResponse" />
+      <s:complexType name="CompleteOrderResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="tns:ResultCode" />
+          <s:element minOccurs="0" maxOccurs="1" name="CinemaID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VistaBookingNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VistaBookingId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VistaTransNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HistoryID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrintStream" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrintStreamCollection" type="tns:ArrayOfPrintStream" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentInfoCollection" type="tns:ArrayOfPaymentInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceList" type="tns:ArrayOfMemberBalance" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExtendedResultCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PassCollection" type="tns:ArrayOfAttachment" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPrintStream">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PrintStream" nillable="true" type="s1:PrintStream" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMemberBalance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MemberBalance" nillable="true" type="s1:MemberBalance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAttachment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Attachment" nillable="true" type="s1:Attachment" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="QueryOrderBookingStatusRequest" type="tns:QueryOrderBookingStatusRequest" />
+      <s:complexType name="QueryOrderBookingStatusRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LimitToOrdersStartedFrom" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="QueryOrderBookingStatusResult" type="tns:QueryOrderBookingStatusResponse" />
+      <s:complexType name="QueryOrderBookingStatusResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResponseCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderSummary" type="s1:OrderSummary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="OrderPaymentRequest" type="tns:OrderPaymentRequest" />
+      <s:complexType name="OrderPaymentRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalClientClass" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalClientId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalClientName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentInfo" type="s1:PaymentInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerZipCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseAlternateLanguage" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerLanguageTag" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="OrderPaymentResult" type="tns:OrderPaymentResponse" />
+      <s:complexType name="OrderPaymentResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResponseCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentInfo" type="s1:PaymentInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SelectItemDiscountsRequest" type="tns:ApplyDiscountsRequest" />
+      <s:complexType name="ApplyDiscountsRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ConcessionDiscounts" type="tns:ArrayOfConcessionDiscountApplied" />
+              <s:element minOccurs="0" maxOccurs="1" name="TicketDiscounts" type="tns:ArrayOfTicketDiscountApplied" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnOrder" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfConcessionDiscountApplied">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ConcessionDiscountApplied" nillable="true" type="s1:ConcessionDiscountApplied" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTicketDiscountApplied">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TicketDiscountApplied" nillable="true" type="s1:TicketDiscountApplied" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ApplyDiscountsResult" type="tns:ApplyDiscountsResponse" />
+      <s:complexType name="ApplyDiscountsResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order" type="s1:Order" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExtendedResultCode" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="RemoveTicketsRequest" type="s1:RemoveTicketsRequest" />
+      <s:element name="RemoveTicketsResult" type="tns:RemoveTicketsResponse" />
+      <s:complexType name="RemoveTicketsResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order" type="s1:Order" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExtendedResultCode" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="RemoveConcessionsRequest" type="s1:RemoveConcessionsRequest" />
+      <s:element name="RemoveConcessionsResult" type="tns:RemoveConcessionsResponse" />
+      <s:complexType name="RemoveConcessionsResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order" type="s1:Order" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExtendedResultCode" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ValidateMemberTicketRequest" type="s1:ValidateMemberTicketRequest" />
+      <s:element name="ValidateMemberTicketResult" type="tns:ValidateMemberTicketResponse" />
+      <s:complexType name="ValidateMemberTicketResponse">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ExtendedResultCode" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="MemberTicketApprovals" type="tns:MemberTicketApproval" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="MemberTicketApproval">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TicketTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberProviderName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ApprovedPriceInCents" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="ApprovedQty" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCardWalletRequest" type="tns:GetCardWalletRequest" />
+      <s:complexType name="GetCardWalletRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetCardWalletResult" type="tns:GetCardWalletResponse" />
+      <s:complexType name="GetCardWalletResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cards" type="tns:ArrayOfWalletCard" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfWalletCard">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WalletCard" nillable="true" type="tns:WalletCard" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WalletCard">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AccessToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaskedCardNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardExpiry" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RemoveCardFromWalletRequest" type="tns:RemoveCardFromWalletRequest" />
+      <s:complexType name="RemoveCardFromWalletRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AccessToken" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MemberId" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="RemoveCardFromWalletResult" type="tns:RemoveCardFromWalletResponse" />
+      <s:complexType name="RemoveCardFromWalletResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://vista.co.nz/services/WSVistaWebClient.DataTypes/1/">
+      <s:complexType name="ClientRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalClientClass" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalClientId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalClientName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Order">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CinemaId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalValueCents" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookingFeeValueCents" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalOrderCount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sessions" type="s1:ArrayOfSession" />
+          <s:element minOccurs="0" maxOccurs="1" name="Concessions" type="s1:ArrayOfConcession" />
+          <s:element minOccurs="0" maxOccurs="1" name="Customer" type="s1:Customer" />
+          <s:element minOccurs="1" maxOccurs="1" name="VistaTransactionNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VistaBookingNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastUpdated" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalTicketFeeValueInCents" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSession">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Session" nillable="true" type="s1:Session" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Session">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CinemaId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SessionId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AllocatedSeating" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatsAllocated" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tickets" type="s1:ArrayOfTicket" />
+          <s:element minOccurs="0" maxOccurs="1" name="FilmTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AltFilmTitle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FilmTitleTranslations" type="s1:ArrayOfTranslation" />
+          <s:element minOccurs="0" maxOccurs="1" name="FilmClassification" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AltFilmClassification" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowingRealDateTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTicket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Ticket" nillable="true" type="s1:Ticket" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Ticket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TicketTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TicketTypeHOPK" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceCents" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeatData" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AltDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DescriptionTranslations" type="s1:ArrayOfTranslation" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsTicketPackage" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DiscountsAvailable" type="s1:ArrayOfItemDiscount" />
+          <s:element minOccurs="1" maxOccurs="1" name="PackageId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoyaltyRecognitionId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoyaltyRecognitionSequence" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PackageTickets" type="s1:ArrayOfTicket" />
+          <s:element minOccurs="0" maxOccurs="1" name="PackageConcessions" type="s1:ArrayOfConcession" />
+          <s:element minOccurs="1" maxOccurs="1" name="DiscountPriceCents" nillable="true" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="PromotionTicketTypeId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PromotionInstanceGroupNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeatNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SeatRowId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTranslation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Translation" nillable="true" type="s1:Translation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Translation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LanguageTag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfItemDiscount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ItemDiscount" nillable="true" type="s1:ItemDiscount" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ItemDiscount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceToUseInCents" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoyaltyPointsCost" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsLoyaltyOnly" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfConcession">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Concession" nillable="true" type="s1:Concession" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Concession">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ItemId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PromoCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecognitionId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecognitionSequenceNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsLoyaltyMembershipActivation" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="HeadOfficeItemCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="GetBarcodeFromVGC" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentSaleItem" type="s1:ConcessionReference" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PackageChildItems" type="s1:ConcessionPackageChildItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryInfo" type="s1:ItemDeliveryInfo" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Modifiers" type="s1:Modifier" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ConcessionReference">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ItemId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ConcessionPackageChildItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ItemId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentSaleItem" type="s1:ConcessionReference" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryInfo" type="s1:ItemDeliveryInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ItemDeliveryInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Seats" type="s1:ArrayOfDeliverySeat" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDeliverySeat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DeliverySeat" nillable="true" type="s1:DeliverySeat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DeliverySeat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RowId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SeatNumber" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Modifier">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ModifierItemId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceInCents" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Customer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s1:Address" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Address">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Suburb" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValidationReference" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TicketType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TicketTypeCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Qty" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceInCents" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalBarcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalBarcodePin" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OptionalAreaCatSequence" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalTicketTypeProvider" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BookingFeeOverride" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThirdPartyMemberScheme" type="s1:ThirdPartyMemberScheme" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoyaltyRecognitionId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoyaltyRecognitionSequence" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PromotionTicketTypeId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PromotionInstanceGroupNumber" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalAreaCategoryCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriceCardPriceInCents" nillable="true" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ThirdPartyMemberScheme">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MemberCard" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MemberDateOfBirth" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SessionTicketOrder">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SessionId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TicketTypes" type="s1:ArrayOfTicketType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTicketType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TicketType" nillable="true" type="s1:TicketType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SessionStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SessionId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfSeatsAvailable" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaximumNumberOfSeatsPerRow" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RedemptionsRemainingForVoucher">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TicketTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfRedemptionsRemaining" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SeasonPass">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SeasonPassTicketTypeId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Qty" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tickets" type="s1:ArrayOfSeasonPassTicket" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfSeasonPassTicket">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SeasonPassTicket" nillable="true" type="s1:SeasonPassTicket" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SeasonPassTicket">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SessionId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderDelivery">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsGift" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsGiftWrapped" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="GiftMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillingAddress" type="s1:OrderDeliveryAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryAddress" type="s1:OrderDeliveryAddress" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderDeliveryAddress">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompanyName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Town" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Postcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InSeatOrderDeliveryInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryWindowDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeliveryWindowValue" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetSessionSeatDataRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CinemaId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnOrder" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ExcludeAreasWithoutTickets" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IncludeBrokenSeats" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IncludeHouseSpecialSeats" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IncludeGreyAndSofaSeats" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IncludeAllSeatPriorities" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IncludeSeatNumbers" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="IncludeCompanionSeats" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SetSelectedSeatsRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CinemaId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SeatData" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnOrder" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="SelectedSeats" type="s1:ArrayOfSelectedSeat" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfSelectedSeat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectedSeat" nillable="true" type="s1:SelectedSeat" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SelectedSeat">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AreaCategoryCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AreaNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RowIndex" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ColumnIndex" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExternalPaymentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentMethod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReturnUrl" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsInAppPayment" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderCompletionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerInfo" type="s1:CustomerInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrintSettings" type="s1:PrintSettings" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookingNotes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PassTypesRequestedForOrder" type="s1:IncludedAttachments" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseAlternateLanguage" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserLanguageTag" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomerInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PickupName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OptionalMemberId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PrintSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="GeneratePrintStream" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrintTemplateName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrintStreamType" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GenerateConcessionVoucherPrintStream" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IncludedAttachments">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeApplePassBook" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeICal" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdditionalAttachmentTypes" type="s1:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardExpiryMonth" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardExpiryYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardValidFromMonth" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardValidFromYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardIssueNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PaymentValueCents" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentSystemId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardCVC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentTenderCategory" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BillFullOutstandingAmount" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="UseAsBookingRef" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentErrorCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentErrorDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BillingValueCents" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardBalance" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankReference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardHash" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WalletAccessToken" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SaveCardToWallet" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankTransactionNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerTaxName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomerTaxNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MemberId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentToken" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentTokenType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PrintStream">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PrintStream" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrintDocType" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MemberBalance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BalanceTypeID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PointsRemaining" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="LifetimePointsBalanceDisplay" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsDefault" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameAlt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameTranslations" type="s1:ArrayOfTranslation" />
+          <s:element minOccurs="1" maxOccurs="1" name="RedemptionRate" nillable="true" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Attachment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AttachmentType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttachmentData" type="s1:ArrayOfUnsignedByte" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileExtension" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfUnsignedByte">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="unsignedByte" type="s:unsignedByte" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderSummary">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CinemaId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VistaBookingId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="VistaBookingNumber" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalValueCents" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ConcessionDiscountApplied">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:DiscountApplied">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DiscountApplied" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ItemId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DiscountCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TicketDiscountApplied">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:DiscountApplied">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="PackageId" nillable="true" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RemoveTicketsRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TicketRemovals" type="s1:ArrayOfTicketRemoval" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnOrder" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfTicketRemoval">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TicketRemoval" nillable="true" type="s1:TicketRemoval" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TicketRemoval">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SessionId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tickets" type="s1:ArrayOfLong" />
+          <s:element minOccurs="0" maxOccurs="1" name="PackageTicketIds" type="s1:ArrayOfInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RemoveConcessionsRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ConcessionRemovals" type="s1:ArrayOfConcessionRemoval" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReturnOrder" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfConcessionRemoval">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ConcessionRemoval" nillable="true" type="s1:ConcessionRemoval" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ConcessionRemoval">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ItemId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ValidateMemberTicketRequest">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:ClientRequest">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserSessionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CinemaId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="unbounded" name="TicketTypes" type="s1:TicketType" />
+              <s:element minOccurs="0" maxOccurs="1" name="CustomerLanguageTag" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetOrderSoapIn">
+    <wsdl:part name="getOrderRequest" element="tns:GetOrderRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderSoapOut">
+    <wsdl:part name="GetOrderResult" element="tns:GetOrderResult" />
+  </wsdl:message>
+  <wsdl:message name="CancelOrderSoapIn">
+    <wsdl:part name="cancelOrderRequest" element="tns:CancelOrderRequest" />
+  </wsdl:message>
+  <wsdl:message name="CancelOrderSoapOut">
+    <wsdl:part name="CancelOrderResult" element="tns:CancelOrderResult" />
+  </wsdl:message>
+  <wsdl:message name="ResetOrderExpirySoapIn">
+    <wsdl:part name="resetOrderExpiryRequest" element="tns:ResetOrderExpiryRequest" />
+  </wsdl:message>
+  <wsdl:message name="ResetOrderExpirySoapOut">
+    <wsdl:part name="ResetOrderExpiryResult" element="tns:ResetOrderExpiryResult" />
+  </wsdl:message>
+  <wsdl:message name="AddTicketsSoapIn">
+    <wsdl:part name="addTicketsRequest" element="tns:AddTicketsRequest" />
+  </wsdl:message>
+  <wsdl:message name="AddTicketsSoapOut">
+    <wsdl:part name="AddTicketsResult" element="tns:AddTicketsResult" />
+  </wsdl:message>
+  <wsdl:message name="AddSeasonPassTicketsSoapIn">
+    <wsdl:part name="addSeasonPassTicketsRequest" element="tns:AddSeasonPassTicketsRequest" />
+  </wsdl:message>
+  <wsdl:message name="AddSeasonPassTicketsSoapOut">
+    <wsdl:part name="AddSeasonPassTicketsResult" element="tns:AddSeasonPassTicketsResult" />
+  </wsdl:message>
+  <wsdl:message name="AddConcessionsSoapIn">
+    <wsdl:part name="addConcessionsRequest" element="tns:AddConcessionsRequest" />
+  </wsdl:message>
+  <wsdl:message name="AddConcessionsSoapOut">
+    <wsdl:part name="AddConcessionsResult" element="tns:AddConcessionsResult" />
+  </wsdl:message>
+  <wsdl:message name="GetSessionSeatDataSoapIn">
+    <wsdl:part name="getSessionSeatDataRequest" element="tns:GetSessionSeatDataRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetSessionSeatDataSoapOut">
+    <wsdl:part name="GetSessionSeatDataResult" element="tns:GetSessionSeatDataResult" />
+  </wsdl:message>
+  <wsdl:message name="SetSelectedSeatsSoapIn">
+    <wsdl:part name="setSelectedSeatsRequest" element="tns:SetSelectedSeatsRequest" />
+  </wsdl:message>
+  <wsdl:message name="SetSelectedSeatsSoapOut">
+    <wsdl:part name="SetSelectedSeatsResult" element="tns:SetSelectedSeatsResult" />
+  </wsdl:message>
+  <wsdl:message name="ExternalPaymentStartingSoapIn">
+    <wsdl:part name="externalPaymentStartingRequest" element="tns:ExternalPaymentStartingRequest" />
+  </wsdl:message>
+  <wsdl:message name="ExternalPaymentStartingSoapOut">
+    <wsdl:part name="ExternalPaymentStartingResult" element="tns:ExternalPaymentStartingResult" />
+  </wsdl:message>
+  <wsdl:message name="ExternalPaymentFinishingSoapIn">
+    <wsdl:part name="externalPaymentFinishingRequest" element="tns:ExternalPaymentFinishingRequest" />
+  </wsdl:message>
+  <wsdl:message name="ExternalPaymentFinishingSoapOut">
+    <wsdl:part name="ExternalPaymentFinishingResult" element="tns:ExternalPaymentFinishingResult" />
+  </wsdl:message>
+  <wsdl:message name="CompleteOrderSoapIn">
+    <wsdl:part name="completeOrderRequest" element="tns:CompleteOrderRequest" />
+  </wsdl:message>
+  <wsdl:message name="CompleteOrderSoapOut">
+    <wsdl:part name="CompleteOrderResult" element="tns:CompleteOrderResult" />
+  </wsdl:message>
+  <wsdl:message name="QueryOrderBookingStatusSoapIn">
+    <wsdl:part name="queryOrderBookingStatusRequest" element="tns:QueryOrderBookingStatusRequest" />
+  </wsdl:message>
+  <wsdl:message name="QueryOrderBookingStatusSoapOut">
+    <wsdl:part name="QueryOrderBookingStatusResult" element="tns:QueryOrderBookingStatusResult" />
+  </wsdl:message>
+  <wsdl:message name="OrderPaymentSoapIn">
+    <wsdl:part name="orderPaymentRequest" element="tns:OrderPaymentRequest" />
+  </wsdl:message>
+  <wsdl:message name="OrderPaymentSoapOut">
+    <wsdl:part name="OrderPaymentResult" element="tns:OrderPaymentResult" />
+  </wsdl:message>
+  <wsdl:message name="ApplyDiscountsSoapIn">
+    <wsdl:part name="selectItemDiscountsRequest" element="tns:SelectItemDiscountsRequest" />
+  </wsdl:message>
+  <wsdl:message name="ApplyDiscountsSoapOut">
+    <wsdl:part name="ApplyDiscountsResult" element="tns:ApplyDiscountsResult" />
+  </wsdl:message>
+  <wsdl:message name="RemoveTicketsSoapIn">
+    <wsdl:part name="removeTicketsRequest" element="tns:RemoveTicketsRequest" />
+  </wsdl:message>
+  <wsdl:message name="RemoveTicketsSoapOut">
+    <wsdl:part name="RemoveTicketsResult" element="tns:RemoveTicketsResult" />
+  </wsdl:message>
+  <wsdl:message name="RemoveConcessionsSoapIn">
+    <wsdl:part name="removeConcessionsRequest" element="tns:RemoveConcessionsRequest" />
+  </wsdl:message>
+  <wsdl:message name="RemoveConcessionsSoapOut">
+    <wsdl:part name="RemoveConcessionsResult" element="tns:RemoveConcessionsResult" />
+  </wsdl:message>
+  <wsdl:message name="ValidateMemberTicketSoapIn">
+    <wsdl:part name="validateMemberTicketRequest" element="tns:ValidateMemberTicketRequest" />
+  </wsdl:message>
+  <wsdl:message name="ValidateMemberTicketSoapOut">
+    <wsdl:part name="ValidateMemberTicketResult" element="tns:ValidateMemberTicketResult" />
+  </wsdl:message>
+  <wsdl:message name="GetCardWalletSoapIn">
+    <wsdl:part name="getCardWalletRequest" element="tns:GetCardWalletRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetCardWalletSoapOut">
+    <wsdl:part name="GetCardWalletResult" element="tns:GetCardWalletResult" />
+  </wsdl:message>
+  <wsdl:message name="RemoveCardFromWalletSoapIn">
+    <wsdl:part name="removeCardFromWalletRequest" element="tns:RemoveCardFromWalletRequest" />
+  </wsdl:message>
+  <wsdl:message name="RemoveCardFromWalletSoapOut">
+    <wsdl:part name="RemoveCardFromWalletResult" element="tns:RemoveCardFromWalletResult" />
+  </wsdl:message>
+  <wsdl:portType name="TicketingService">
+    <wsdl:operation name="GetOrder">
+      <wsdl:input message="tns:GetOrderSoapIn" />
+      <wsdl:output message="tns:GetOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <wsdl:input message="tns:CancelOrderSoapIn" />
+      <wsdl:output message="tns:CancelOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetOrderExpiry">
+      <wsdl:input message="tns:ResetOrderExpirySoapIn" />
+      <wsdl:output message="tns:ResetOrderExpirySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTickets">
+      <wsdl:input message="tns:AddTicketsSoapIn" />
+      <wsdl:output message="tns:AddTicketsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSeasonPassTickets">
+      <wsdl:input message="tns:AddSeasonPassTicketsSoapIn" />
+      <wsdl:output message="tns:AddSeasonPassTicketsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddConcessions">
+      <wsdl:input message="tns:AddConcessionsSoapIn" />
+      <wsdl:output message="tns:AddConcessionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionSeatData">
+      <wsdl:input message="tns:GetSessionSeatDataSoapIn" />
+      <wsdl:output message="tns:GetSessionSeatDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSelectedSeats">
+      <wsdl:input message="tns:SetSelectedSeatsSoapIn" />
+      <wsdl:output message="tns:SetSelectedSeatsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExternalPaymentStarting">
+      <wsdl:input message="tns:ExternalPaymentStartingSoapIn" />
+      <wsdl:output message="tns:ExternalPaymentStartingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExternalPaymentFinishing">
+      <wsdl:input message="tns:ExternalPaymentFinishingSoapIn" />
+      <wsdl:output message="tns:ExternalPaymentFinishingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CompleteOrder">
+      <wsdl:input message="tns:CompleteOrderSoapIn" />
+      <wsdl:output message="tns:CompleteOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryOrderBookingStatus">
+      <wsdl:input message="tns:QueryOrderBookingStatusSoapIn" />
+      <wsdl:output message="tns:QueryOrderBookingStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderPayment">
+      <wsdl:input message="tns:OrderPaymentSoapIn" />
+      <wsdl:output message="tns:OrderPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApplyDiscounts">
+      <wsdl:input message="tns:ApplyDiscountsSoapIn" />
+      <wsdl:output message="tns:ApplyDiscountsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTickets">
+      <wsdl:input message="tns:RemoveTicketsSoapIn" />
+      <wsdl:output message="tns:RemoveTicketsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveConcessions">
+      <wsdl:input message="tns:RemoveConcessionsSoapIn" />
+      <wsdl:output message="tns:RemoveConcessionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateMemberTickets">
+      <wsdl:input name="ValidateMemberTicket" message="tns:ValidateMemberTicketSoapIn" />
+      <wsdl:output name="ValidateMemberTicket" message="tns:ValidateMemberTicketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardWallet">
+      <wsdl:input message="tns:GetCardWalletSoapIn" />
+      <wsdl:output message="tns:GetCardWalletSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCardFromWallet">
+      <wsdl:input message="tns:RemoveCardFromWalletSoapIn" />
+      <wsdl:output message="tns:RemoveCardFromWalletSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TicketingService" type="tns:TicketingService">
+    <wsdl:documentation>
+      <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" />
+    </wsdl:documentation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetOrder">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/GetOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/CancelOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetOrderExpiry">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/ResetOrderExpiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTickets">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/AddTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSeasonPassTickets">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/AddSeasonPassTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddConcessions">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/AddConcessions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionSeatData">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/GetSessionSeatData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSelectedSeats">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/SetSelectedSeats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExternalPaymentStarting">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/ExternalPaymentStarting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExternalPaymentFinishing">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/ExternalPaymentFinishing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompleteOrder">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/CompleteOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryOrderBookingStatus">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/QueryOrderBookingStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderPayment">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/OrderPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplyDiscounts">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/ApplyItemDiscounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTickets">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/RemoveTickets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveConcessions">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/RemoveConcessions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateMemberTickets">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/ValidateMemberTicket" style="document" />
+      <wsdl:input name="ValidateMemberTicket">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ValidateMemberTicket">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardWallet">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/GetCardWallet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCardFromWallet">
+      <soap:operation soapAction="http://vista.co.nz/services/WSVistaWebClient.ServiceContracts/1/RemoveCardFromWallet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TicketingService">
+    <wsdl:port name="TicketingService" binding="tns:TicketingService">
+      <soap:address location="http://dc1-viis-win12.multiplex.ua/WSVistaWebClient/TicketingService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

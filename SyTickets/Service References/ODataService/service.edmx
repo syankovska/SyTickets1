@@ -1,0 +1,800 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices m:DataServiceVersion="3.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <Schema Namespace="WSVistaWebClient.ServiceContracts.OData" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="Cinema">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="CinemaNationalId" Type="Edm.String" />
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="NameAlt" Type="Edm.String" />
+        <Property Name="PhoneNumber" Type="Edm.String" />
+        <Property Name="EmailAddress" Type="Edm.String" />
+        <Property Name="Address1" Type="Edm.String" />
+        <Property Name="Address2" Type="Edm.String" />
+        <Property Name="City" Type="Edm.String" />
+        <Property Name="Latitude" Type="Edm.Decimal" />
+        <Property Name="Longitude" Type="Edm.Decimal" />
+        <Property Name="ParkingInfo" Type="Edm.String" />
+        <Property Name="LoyaltyCode" Type="Edm.String" />
+        <Property Name="IsGiftStore" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="DescriptionAlt" Type="Edm.String" />
+        <Property Name="PublicTransport" Type="Edm.String" />
+        <Property Name="CurrencyCode" Type="Edm.String" />
+        <Property Name="AllowPrintAtHomeBookings" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AllowOnlineVoucherValidation" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="DisplaySofaSeats" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="TimeZoneId" Type="Edm.String" />
+        <Property Name="HOPK" Type="Edm.String" />
+        <Property Name="NameTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="DescriptionTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="ParkingInfoTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="PublicTransportTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="TipsCompulsory" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="TipPercentages" Type="Edm.String" />
+        <Property Name="ServerName" Type="Edm.String" />
+        <NavigationProperty Name="ScheduledFilms" Relationship="WSVistaWebClient.ServiceContracts.OData.Cinema_ScheduledFilms" ToRole="ScheduledFilms" FromRole="Cinema" />
+        <NavigationProperty Name="ScreenAttributes" Relationship="WSVistaWebClient.ServiceContracts.OData.Cinema_ScreenAttributes" ToRole="ScreenAttributes" FromRole="Cinema" />
+        <NavigationProperty Name="ConceptAttributes" Relationship="WSVistaWebClient.ServiceContracts.OData.Cinema_ConceptAttributes" ToRole="ConceptAttributes" FromRole="Cinema" />
+      </EntityType>
+      <EntityType Name="ScheduledFilm">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="ScheduledFilmId" Type="Edm.String" />
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="HasFutureSessions" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Title" Type="Edm.String" />
+        <Property Name="TitleAlt" Type="Edm.String" />
+        <Property Name="Rating" Type="Edm.String" />
+        <Property Name="RatingAlt" Type="Edm.String" />
+        <Property Name="RatingDescription" Type="Edm.String" />
+        <Property Name="RatingDescriptionAlt" Type="Edm.String" />
+        <Property Name="Synopsis" Type="Edm.String" />
+        <Property Name="SynopsisAlt" Type="Edm.String" />
+        <Property Name="OpeningDate" Type="Edm.DateTime" />
+        <Property Name="FilmHOPK" Type="Edm.String" />
+        <Property Name="FilmHOCode" Type="Edm.String" />
+        <Property Name="ShortCode" Type="Edm.String" />
+        <Property Name="RunTime" Type="Edm.String" />
+        <Property Name="TrailerUrl" Type="Edm.String" />
+        <Property Name="DisplaySequence" Type="Edm.Int32" />
+        <Property Name="TwitterTag" Type="Edm.String" />
+        <Property Name="HasSessionsAvailable" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="GraphicUrl" Type="Edm.String" />
+        <Property Name="CinemaName" Type="Edm.String" />
+        <Property Name="CinemaNameAlt" Type="Edm.String" />
+        <Property Name="AllowTicketSales" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AdvertiseAdvanceBookingDate" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AdvanceBookingDate" Type="Edm.DateTime" />
+        <Property Name="LoyaltyAdvanceBookingDate" Type="Edm.DateTime" />
+        <Property Name="HasDynamicallyPricedTicketsAvailable" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsPlayThroughMarketingFilm" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="CustomerRatingStatistics" Type="WSVistaWebClient.DataTypes.Loyalty.CustomerRatings.FilmRatingStatistics" />
+        <Property Name="CustomerRatingTrailerStatistics" Type="WSVistaWebClient.DataTypes.Loyalty.CustomerRatings.FilmTrailerRatingStatistics" />
+        <NavigationProperty Name="Sessions" Relationship="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm_Sessions" ToRole="Sessions" FromRole="ScheduledFilm" />
+        <NavigationProperty Name="FirstDaysSessions" Relationship="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm_FirstDaysSessions" ToRole="FirstDaysSessions" FromRole="ScheduledFilm" />
+        <NavigationProperty Name="FutureSessions" Relationship="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm_FutureSessions" ToRole="FutureSessions" FromRole="ScheduledFilm" />
+        <NavigationProperty Name="Cast" Relationship="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm_Cast" ToRole="Cast" FromRole="ScheduledFilm" />
+        <NavigationProperty Name="PlayThroughFilms" Relationship="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm_PlayThroughFilms" ToRole="PlayThroughFilms" FromRole="ScheduledFilm" />
+      </EntityType>
+      <EntityType Name="Session">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="ScheduledFilmId" Type="Edm.String" />
+        <Property Name="SessionId" Type="Edm.String" />
+        <Property Name="AreaCategoryCodes" Type="Collection(Edm.String)" Nullable="false" />
+        <Property Name="Showtime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="IsAllocatedSeating" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AllowChildAdmits" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="SeatsAvailable" Type="Edm.Int32" Nullable="false" />
+        <Property Name="AllowComplimentaryTickets" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="EventId" Type="Edm.String" />
+        <Property Name="PriceGroupCode" Type="Edm.String" />
+        <Property Name="ScreenName" Type="Edm.String" />
+        <Property Name="ScreenNameAlt" Type="Edm.String" />
+        <Property Name="ScreenNumber" Type="Edm.Int32" />
+        <Property Name="CinemaOperatorCode" Type="Edm.String" />
+        <Property Name="FormatCode" Type="Edm.String" />
+        <Property Name="SalesChannels" Type="Edm.String" />
+        <Property Name="SessionAttributesNames" Type="Collection(Edm.String)" Nullable="false" />
+        <Property Name="ConceptAttributesNames" Type="Collection(Edm.String)" Nullable="false" />
+        <Property Name="AllowTicketSales" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="HasDynamicallyPricedTicketsAvailable" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="PlayThroughId" Type="Edm.String" />
+        <Property Name="SessionBusinessDate" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="SessionDisplayPriority" Type="Edm.Int32" Nullable="false" />
+        <Property Name="GroupSessionsByAttribute" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="Attributes" Relationship="WSVistaWebClient.ServiceContracts.OData.Session_Attributes" ToRole="Attributes" FromRole="Session" />
+      </EntityType>
+      <EntityType Name="Setting">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="Value" Type="Edm.String" />
+        <Property Name="Name" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="Film">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="ShortCode" Type="Edm.String" />
+        <Property Name="Title" Type="Edm.String" />
+        <Property Name="Rating" Type="Edm.String" />
+        <Property Name="RatingDescription" Type="Edm.String" />
+        <Property Name="Synopsis" Type="Edm.String" />
+        <Property Name="ShortSynopsis" Type="Edm.String" />
+        <Property Name="HOFilmCode" Type="Edm.String" />
+        <Property Name="CorporateFilmId" Type="Edm.String" />
+        <Property Name="RunTime" Type="Edm.Int32" />
+        <Property Name="OpeningDate" Type="Edm.DateTime" />
+        <Property Name="TrailerUrl" Type="Edm.String" />
+        <Property Name="IsComingSoon" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsScheduledAtCinema" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="TitleAlt" Type="Edm.String" />
+        <Property Name="RatingAlt" Type="Edm.String" />
+        <Property Name="RatingDescriptionAlt" Type="Edm.String" />
+        <Property Name="SynopsisAlt" Type="Edm.String" />
+        <Property Name="ShortSynopsisAlt" Type="Edm.String" />
+        <Property Name="WebsiteUrl" Type="Edm.String" />
+        <Property Name="GenreId" Type="Edm.String" />
+        <Property Name="TwitterTag" Type="Edm.String" />
+        <Property Name="TitleTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="SynopsisTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="RatingDescriptionTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="CustomerRatingStatistics" Type="WSVistaWebClient.DataTypes.Loyalty.CustomerRatings.FilmRatingStatistics" />
+        <Property Name="CustomerRatingTrailerStatistics" Type="WSVistaWebClient.DataTypes.Loyalty.CustomerRatings.FilmTrailerRatingStatistics" />
+        <Property Name="FilmWebId" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="FilmPersonLink">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="FilmId" Type="Edm.String" />
+        <Property Name="PersonId" Type="Edm.String" />
+        <Property Name="PersonType" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="Person">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="FirstName" Type="Edm.String" />
+        <Property Name="LastName" Type="Edm.String" />
+        <Property Name="UrlToDetails" Type="Edm.String" />
+        <Property Name="UrlToPicture" Type="Edm.String" />
+        <Property Name="IsActor" Type="Edm.Boolean" Nullable="false" />
+      </EntityType>
+      <EntityType Name="FilmPerson">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="FirstName" Type="Edm.String" />
+        <Property Name="LastName" Type="Edm.String" />
+        <Property Name="UrlToDetails" Type="Edm.String" />
+        <Property Name="UrlToPicture" Type="Edm.String" />
+        <Property Name="PersonType" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="SiteGroup">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="AreaCode" Type="Edm.String" />
+        <Property Name="ClientId" Type="Edm.String" />
+        <Property Name="IsOnlyAvailableToClient" Type="Edm.Boolean" Nullable="false" />
+        <NavigationProperty Name="Cinemas" Relationship="WSVistaWebClient.ServiceContracts.OData.SiteGroup_Cinemas" ToRole="Cinemas" FromRole="SiteGroup" />
+      </EntityType>
+      <EntityType Name="SiteGroupCinemaLink">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="SiteGroupId" Type="Edm.String" />
+        <Property Name="CinemaId" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="CinemaEvent">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="NameAlt" Type="Edm.String" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="DescriptionAlt" Type="Edm.String" />
+        <Property Name="StartDate" Type="Edm.DateTime" />
+        <Property Name="Status" Type="Edm.Int32" Nullable="false" />
+        <Property Name="CinemaIDs" Type="Collection(Edm.String)" Nullable="false" />
+        <Property Name="HasSeasonPassTicketsAvailable" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="NameTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="DescriptionTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <NavigationProperty Name="LinkedCinemas" Relationship="WSVistaWebClient.ServiceContracts.OData.CinemaEvent_LinkedCinemas" ToRole="LinkedCinemas" FromRole="CinemaEvent" />
+      </EntityType>
+      <EntityType Name="Attribute">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="ShortName" Type="Edm.String" />
+        <Property Name="AltDescription" Type="Edm.String" />
+        <Property Name="AltShortName" Type="Edm.String" />
+        <Property Name="Message" Type="Edm.String" />
+        <Property Name="MessageAlt" Type="Edm.String" />
+        <Property Name="SalesChannels" Type="Edm.String" />
+        <Property Name="IsUsedForConcepts" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsUsedForSessionAdvertising" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="DisplayPriority" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DescriptionTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="MessageTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="SessionAttributeCinemaIDs" Type="Collection(Edm.String)" Nullable="false" />
+      </EntityType>
+      <EntityType Name="ScreenAttribute">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="ScreenNumber" Type="Edm.Byte" Nullable="false" />
+        <Property Name="ShortName" Type="Edm.String" />
+        <Property Name="IsConcept" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="DescriptionAlt" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="SessionAttributeLink">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="CinemaID" Type="Edm.String" />
+        <Property Name="SessionID" Type="Edm.String" />
+        <Property Name="ShortName" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="AddressModuleConfig">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="Status" Type="Edm.String" />
+        <Property Name="AssemblyName" Type="Edm.String" />
+        <Property Name="ControlSettings" Type="Edm.String" />
+        <Property Name="ServiceSettings" Type="Edm.String" />
+        <Property Name="IsActive" Type="Edm.Boolean" Nullable="false" />
+      </EntityType>
+      <ComplexType Name="ConcessionItem">
+        <Property Name="Id" Type="Edm.String" />
+        <Property Name="HeadOfficeItemCode" Type="Edm.String" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="DescriptionAlt" Type="Edm.String" />
+        <Property Name="ExtendedDescription" Type="Edm.String" />
+        <Property Name="ExtendedDescriptionAlt" Type="Edm.String" />
+        <Property Name="PriceInCents" Type="Edm.Int32" Nullable="false" />
+        <Property Name="RequiresPickup" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="CanGetBarcode" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="ShippingMethod" Type="Edm.String" />
+        <Property Name="RestrictToLoyalty" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="LoyaltyDiscountCode" Type="Edm.String" />
+        <Property Name="RecognitionMaxQuantity" Type="Edm.Int32" Nullable="false" />
+        <Property Name="RecognitionPointsCost" Type="Edm.Decimal" Nullable="false" />
+        <Property Name="IsRecognitionOnly" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="RecognitionId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="RecognitionSequenceNumber" Type="Edm.Int32" Nullable="false" />
+        <Property Name="RecognitionExpiryDate" Type="Edm.DateTime" />
+        <Property Name="RedeemableType" Type="Edm.Int32" Nullable="false" />
+        <Property Name="IsAvailableForInSeatDelivery" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsAvailableForPickupAtCounter" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="DescriptionTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="AlternateItems" Type="Collection(WSVistaWebClient.ServiceContracts.OData.ConcessionItemAlternate)" Nullable="false" />
+        <Property Name="PackageChildItems" Type="Collection(WSVistaWebClient.ServiceContracts.OData.ConcessionPackageChildItem)" Nullable="false" />
+        <Property Name="ModifierGroups" Type="Collection(WSVistaWebClient.ServiceContracts.OData.ModifierGroup)" Nullable="false" />
+        <Property Name="SmartModifiers" Type="Collection(WSVistaWebClient.ServiceContracts.OData.Modifier)" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="ConcessionItemAlternate">
+        <Property Name="Id" Type="Edm.String" />
+        <Property Name="HeadOfficeItemCode" Type="Edm.String" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="DescriptionAlt" Type="Edm.String" />
+        <Property Name="ExtendedDescription" Type="Edm.String" />
+        <Property Name="ExtendedDescriptionAlt" Type="Edm.String" />
+        <Property Name="PriceInCents" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DescriptionTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="ConcessionPackageChildItem">
+        <Property Name="Id" Type="Edm.String" />
+        <Property Name="Quantity" Type="Edm.Int32" Nullable="false" />
+        <Property Name="PackageKey" Type="Edm.String" />
+        <Property Name="HeadOfficeItemCode" Type="Edm.String" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="DescriptionAlt" Type="Edm.String" />
+        <Property Name="ExtendedDescription" Type="Edm.String" />
+        <Property Name="ExtendedDescriptionAlt" Type="Edm.String" />
+        <Property Name="DescriptionTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="AlternateItems" Type="Collection(WSVistaWebClient.ServiceContracts.OData.ConcessionItemAlternate)" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="ModifierGroup">
+        <Property Name="Id" Type="Edm.String" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="MaximumQuantity" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MinimumQuantity" Type="Edm.Int32" Nullable="false" />
+        <Property Name="FreeQuantity" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Modifiers" Type="Collection(WSVistaWebClient.ServiceContracts.OData.Modifier)" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="Modifier">
+        <Property Name="Id" Type="Edm.String" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="PriceInCents" Type="Edm.Int32" Nullable="false" />
+      </ComplexType>
+      <EntityType Name="FilmGenre">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="NameTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="DescriptionTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+      </EntityType>
+      <EntityType Name="Language">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="FileName" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="AdvertisingProfile">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="IsForMobile" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="Hopk" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="AdvertisingMediaSet">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="AdvertisingProfileId" Type="Edm.String" />
+        <Property Name="Hopk" Type="Edm.String" />
+        <Property Name="URL" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="SalesProfile">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="SalesProfileId" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="AdvanceBookingRule" Relationship="WSVistaWebClient.ServiceContracts.OData.SalesProfile_AdvanceBookingRule" ToRole="AdvanceBookingRule" FromRole="SalesProfile" />
+      </EntityType>
+      <EntityType Name="ScheduledFilmSalesProfileLink">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="ScheduledFilmSalesProfileLinkId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ScheduledFilmId" Type="Edm.String" />
+        <Property Name="SalesProfileId" Type="Edm.Int32" Nullable="false" />
+      </EntityType>
+      <EntityType Name="AdvanceBookingRule">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="AdvanceBookingRuleId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DaysInAdvance" Type="Edm.Int32" Nullable="false" />
+        <Property Name="BookingStartTime" Type="Edm.DateTime" />
+        <Property Name="CalulateAdvanceBookingDateFrom" Type="Edm.String" />
+        <Property Name="AdvertiseInAdvance" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="MaxAdvanceMinutesForLoyaltyMember" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="AdvanceBookingRuleExceptions" Relationship="WSVistaWebClient.ServiceContracts.OData.AdvanceBookingRule_AdvanceBookingRuleExceptions" ToRole="AdvanceBookingRuleExceptions" FromRole="AdvanceBookingRule" />
+      </EntityType>
+      <EntityType Name="AdvanceBookingRuleException">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="AdvanceBookingRuleExceptionId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="SalesChannel" Type="Edm.String" />
+        <Property Name="DaysInAdvance" Type="Edm.Int32" Nullable="false" />
+        <Property Name="BookingStartTime" Type="Edm.DateTime" />
+      </EntityType>
+      <EntityType Name="PlayThroughSession">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="ScheduledFilmId" Type="Edm.String" />
+        <Property Name="SessionId" Type="Edm.String" />
+        <Property Name="PlayThroughId" Type="Edm.String" />
+        <Property Name="Showtime" Type="Edm.DateTime" Nullable="false" />
+        <Property Name="IsAllocatedSeating" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AllowChildAdmits" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="SeatsAvailable" Type="Edm.Int32" Nullable="false" />
+        <Property Name="EventId" Type="Edm.String" />
+        <Property Name="ScreenName" Type="Edm.String" />
+        <Property Name="ScreenNameAlt" Type="Edm.String" />
+        <Property Name="ScreenNumber" Type="Edm.Int32" />
+        <Property Name="CinemaOperatorCode" Type="Edm.String" />
+        <Property Name="FormatCode" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="SeasonPassDeal">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="PromotionId" Type="Edm.String" />
+        <Property Name="CinemaEventCode" Type="Edm.String" />
+        <Property Name="SeasonPassDealTicketTypeGroup" Type="WSVistaWebClient.ServiceContracts.OData.SeasonPassDealTicketTypeGroup" />
+        <Property Name="SeasonPassDealFilmGroups" Type="Collection(WSVistaWebClient.ServiceContracts.OData.SeasonPassDealFilmGroup)" Nullable="false" />
+      </EntityType>
+      <ComplexType Name="SeasonPassDealTicketTypeGroup">
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="SeasonPassDealTicketTypeGroupId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ListComment" Type="Edm.String" />
+        <Property Name="ListCommentAlt" Type="Edm.String" />
+        <Property Name="ListCommentTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="TicketTypes" Type="Collection(WSVistaWebClient.ServiceContracts.OData.SeasonPassTicketType)" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="SeasonPassTicketType">
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="SeasonPassTicketTypeId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="TicketTypeCode" Type="Edm.String" />
+        <Property Name="PriceGroupCode" Type="Edm.String" />
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="DescriptionAlt" Type="Edm.String" />
+        <Property Name="DescriptionTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="MinimumPriceInCents" Type="Edm.Int32" />
+        <Property Name="MaximumPriceInCents" Type="Edm.Int32" />
+      </ComplexType>
+      <ComplexType Name="SeasonPassDealFilmGroup">
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="SeasonPassDealFilmGroupId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MinimumNumberRequired" Type="Edm.Int32" Nullable="false" />
+        <Property Name="MaximumNumberAvailable" Type="Edm.Int32" Nullable="false" />
+        <Property Name="ListComment" Type="Edm.String" />
+        <Property Name="ListCommentAlt" Type="Edm.String" />
+        <Property Name="ListCommentTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+        <Property Name="Films" Type="Collection(WSVistaWebClient.ServiceContracts.OData.SeasonPassFilm)" Nullable="false" />
+      </ComplexType>
+      <ComplexType Name="SeasonPassFilm">
+        <Property Name="CinemaId" Type="Edm.String" />
+        <Property Name="SeasonPassFilmId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="FilmCode" Type="Edm.String" />
+        <Property Name="Title" Type="Edm.String" />
+        <Property Name="TitleAlt" Type="Edm.String" />
+        <Property Name="TitleTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+      </ComplexType>
+      <EntityType Name="Client">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="ClientClass" Type="Edm.String" />
+        <Property Name="WorkstationCode" Type="Edm.String" />
+      </EntityType>
+      <ComplexType Name="DeliveryWindow">
+        <Property Name="Description" Type="Edm.String" />
+        <Property Name="Value" Type="Edm.String" />
+      </ComplexType>
+      <Association Name="Cinema_ScheduledFilms">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm" Role="ScheduledFilms" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Cinema" Role="Cinema" Multiplicity="*" />
+      </Association>
+      <Association Name="Cinema_ScreenAttributes">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.ScreenAttribute" Role="ScreenAttributes" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Cinema" Role="Cinema" Multiplicity="*" />
+      </Association>
+      <Association Name="Cinema_ConceptAttributes">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Cinema" Role="Cinema" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Attribute" Role="ConceptAttributes" Multiplicity="*" />
+      </Association>
+      <Association Name="ScheduledFilm_Sessions">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Session" Role="Sessions" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm" Role="ScheduledFilm" Multiplicity="*" />
+      </Association>
+      <Association Name="ScheduledFilm_FirstDaysSessions">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Session" Role="FirstDaysSessions" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm" Role="ScheduledFilm" Multiplicity="*" />
+      </Association>
+      <Association Name="ScheduledFilm_FutureSessions">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Session" Role="FutureSessions" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm" Role="ScheduledFilm" Multiplicity="*" />
+      </Association>
+      <Association Name="ScheduledFilm_Cast">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm" Role="ScheduledFilm" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.FilmPerson" Role="Cast" Multiplicity="*" />
+      </Association>
+      <Association Name="ScheduledFilm_PlayThroughFilms">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm" Role="PlayThroughFilms" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm" Role="ScheduledFilm" Multiplicity="*" />
+      </Association>
+      <Association Name="Session_Attributes">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Session" Role="Session" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Attribute" Role="Attributes" Multiplicity="*" />
+      </Association>
+      <Association Name="SiteGroup_Cinemas">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.SiteGroup" Role="SiteGroup" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Cinema" Role="Cinemas" Multiplicity="*" />
+      </Association>
+      <Association Name="CinemaEvent_LinkedCinemas">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.CinemaEvent" Role="CinemaEvent" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Cinema" Role="LinkedCinemas" Multiplicity="*" />
+      </Association>
+      <Association Name="SalesProfile_AdvanceBookingRule">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.SalesProfile" Role="SalesProfile" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.AdvanceBookingRule" Role="AdvanceBookingRule" Multiplicity="0..1" />
+      </Association>
+      <Association Name="AdvanceBookingRule_AdvanceBookingRuleExceptions">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.AdvanceBookingRuleException" Role="AdvanceBookingRuleExceptions" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.AdvanceBookingRule" Role="AdvanceBookingRule" Multiplicity="*" />
+      </Association>
+    </Schema>
+    <Schema Namespace="WSVistaWebClient.DataTypes" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <ComplexType Name="Translation">
+        <Property Name="LanguageTag" Type="Edm.String" />
+        <Property Name="Text" Type="Edm.String" />
+      </ComplexType>
+    </Schema>
+    <Schema Namespace="WSVistaWebClient.DataTypes.Loyalty.CustomerRatings" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <ComplexType Name="FilmRatingStatistics">
+        <Property Name="RatingCount" Type="Edm.Int32" Nullable="false" />
+        <Property Name="AverageScore" Type="Edm.Decimal" />
+      </ComplexType>
+      <ComplexType Name="FilmTrailerRatingStatistics">
+        <Property Name="RatingCount" Type="Edm.Int32" Nullable="false" />
+        <Property Name="RatingCountLiked" Type="Edm.Int32" Nullable="false" />
+      </ComplexType>
+    </Schema>
+    <Schema Namespace="WSVistaWebClient.ServiceContracts.OData.Loyalty" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="LoyaltyKeyValuePair" Abstract="true">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="NameAlt" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="Club" BaseType="WSVistaWebClient.ServiceContracts.OData.Loyalty.LoyaltyKeyValuePair">
+        <Property Name="PrimaryLanguageTag" Type="Edm.String" />
+        <Property Name="NameTranslations" Type="Collection(WSVistaWebClient.DataTypes.Translation)" Nullable="false" />
+      </EntityType>
+      <EntityType Name="CustomerRatingType">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="RatingType" Type="Edm.String" />
+        <Property Name="IsActive" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AllowScoreRating" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AllowComment" Type="Edm.Boolean" Nullable="false" />
+      </EntityType>
+      <EntityType Name="LoyaltyCinema" BaseType="WSVistaWebClient.ServiceContracts.OData.Loyalty.LoyaltyKeyValuePair" />
+      <EntityType Name="MembershipProgram">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" />
+        <Property Name="ClubId" Type="Edm.String" />
+        <Property Name="RenewItemId" Type="Edm.String" />
+        <Property Name="ActivateItemId" Type="Edm.String" />
+        <Property Name="LevelId" Type="Edm.String" />
+        <Property Name="RenewalPeriod" Type="Edm.Int32" />
+        <Property Name="RenewalPeriodUnit" Type="Edm.String" />
+        <Property Name="ActivateConcessionItem" Type="WSVistaWebClient.ServiceContracts.OData.ConcessionItem" />
+        <Property Name="RenewConcessionItem" Type="WSVistaWebClient.ServiceContracts.OData.ConcessionItem" />
+        <NavigationProperty Name="Club" Relationship="WSVistaWebClient.ServiceContracts.OData.Loyalty.MembershipProgram_Club" ToRole="Club" FromRole="MembershipProgram" />
+      </EntityType>
+      <EntityType Name="LoyaltySettings">
+        <Key>
+          <PropertyRef Name="ID" />
+        </Key>
+        <Property Name="ID" Type="Edm.String" Nullable="false" />
+        <Property Name="AllowMultiplePreferredComplexes" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AllowUserPreferenceSelection" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="AllowSignInToMultipleMemberships" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="IsPinNumberRequired" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="NumOfMonthsBeforePointsExpiry" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DisplayAverageCustomerRatings" Type="Edm.Boolean" Nullable="false" />
+      </EntityType>
+      <ComplexType Name="MemberFieldSettings">
+        <Property Name="RequiredFields" Type="WSVistaWebClient.ServiceContracts.OData.Loyalty.MemberFieldFlags" />
+        <Property Name="EditFields" Type="WSVistaWebClient.ServiceContracts.OData.Loyalty.MemberFieldFlags" />
+        <Property Name="DisplayFields" Type="WSVistaWebClient.ServiceContracts.OData.Loyalty.MemberFieldFlags" />
+      </ComplexType>
+      <ComplexType Name="MemberFieldFlags">
+        <Property Name="FirstName" Type="Edm.Boolean" />
+        <Property Name="LastName" Type="Edm.Boolean" />
+        <Property Name="Phone" Type="Edm.Boolean" />
+        <Property Name="Address" Type="Edm.Boolean" />
+        <Property Name="Email" Type="Edm.Boolean" />
+        <Property Name="NationalId" Type="Edm.Boolean" />
+        <Property Name="ExternalId" Type="Edm.Boolean" />
+        <Property Name="Birthday" Type="Edm.Boolean" />
+      </ComplexType>
+      <Association Name="MembershipProgram_Club">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Loyalty.MembershipProgram" Role="MembershipProgram" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Loyalty.Club" Role="Club" Multiplicity="0..1" />
+      </Association>
+    </Schema>
+    <Schema Namespace="WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityType Name="PreferenceType" BaseType="WSVistaWebClient.ServiceContracts.OData.Loyalty.LoyaltyKeyValuePair">
+        <Property Name="MaxSelection" Type="Edm.Int32" />
+        <NavigationProperty Name="Preferences" Relationship="WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences.PreferenceType_Preferences" ToRole="Preferences" FromRole="PreferenceType" />
+      </EntityType>
+      <EntityType Name="Preference" BaseType="WSVistaWebClient.ServiceContracts.OData.Loyalty.LoyaltyKeyValuePair">
+        <Property Name="PreferenceTypeId" Type="Edm.String" />
+      </EntityType>
+      <EntityType Name="Genre" BaseType="WSVistaWebClient.ServiceContracts.OData.Loyalty.LoyaltyKeyValuePair" />
+      <EntityType Name="Occupation" BaseType="WSVistaWebClient.ServiceContracts.OData.Loyalty.LoyaltyKeyValuePair" />
+      <EntityType Name="IncomeRange" BaseType="WSVistaWebClient.ServiceContracts.OData.Loyalty.LoyaltyKeyValuePair" />
+      <EntityType Name="EducationLevel" BaseType="WSVistaWebClient.ServiceContracts.OData.Loyalty.LoyaltyKeyValuePair" />
+      <Association Name="PreferenceType_Preferences">
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences.PreferenceType" Role="PreferenceType" Multiplicity="*" />
+        <End Type="WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences.Preference" Role="Preferences" Multiplicity="*" />
+      </Association>
+    </Schema>
+    <Schema Namespace="WSVistaWebClient.ServiceImplementation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <EntityContainer Name="ConnectODataEntities" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Cinemas" EntityType="WSVistaWebClient.ServiceContracts.OData.Cinema" />
+        <EntitySet Name="ScheduledFilms" EntityType="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm" />
+        <EntitySet Name="Sessions" EntityType="WSVistaWebClient.ServiceContracts.OData.Session" />
+        <EntitySet Name="Settings" EntityType="WSVistaWebClient.ServiceContracts.OData.Setting" />
+        <EntitySet Name="Films" EntityType="WSVistaWebClient.ServiceContracts.OData.Film" />
+        <EntitySet Name="FilmPersonLinks" EntityType="WSVistaWebClient.ServiceContracts.OData.FilmPersonLink" />
+        <EntitySet Name="Persons" EntityType="WSVistaWebClient.ServiceContracts.OData.Person" />
+        <EntitySet Name="FilmPersons" EntityType="WSVistaWebClient.ServiceContracts.OData.FilmPerson" />
+        <EntitySet Name="SiteGroups" EntityType="WSVistaWebClient.ServiceContracts.OData.SiteGroup" />
+        <EntitySet Name="SiteGroupCinemaLinks" EntityType="WSVistaWebClient.ServiceContracts.OData.SiteGroupCinemaLink" />
+        <EntitySet Name="CinemaEvents" EntityType="WSVistaWebClient.ServiceContracts.OData.CinemaEvent" />
+        <EntitySet Name="Clubs" EntityType="WSVistaWebClient.ServiceContracts.OData.Loyalty.Club" />
+        <EntitySet Name="CustomerRatingTypes" EntityType="WSVistaWebClient.ServiceContracts.OData.Loyalty.CustomerRatingType" />
+        <EntitySet Name="Attributes" EntityType="WSVistaWebClient.ServiceContracts.OData.Attribute" />
+        <EntitySet Name="ScreenAttributes" EntityType="WSVistaWebClient.ServiceContracts.OData.ScreenAttribute" />
+        <EntitySet Name="SessionAttributeLinks" EntityType="WSVistaWebClient.ServiceContracts.OData.SessionAttributeLink" />
+        <EntitySet Name="AddressModuleConfigs" EntityType="WSVistaWebClient.ServiceContracts.OData.AddressModuleConfig" />
+        <EntitySet Name="LoyaltyCinemas" EntityType="WSVistaWebClient.ServiceContracts.OData.Loyalty.LoyaltyCinema" />
+        <EntitySet Name="PreferenceTypes" EntityType="WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences.PreferenceType" />
+        <EntitySet Name="Preferences" EntityType="WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences.Preference" />
+        <EntitySet Name="LoyaltyGenrePreferences" EntityType="WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences.Genre" />
+        <EntitySet Name="Occupations" EntityType="WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences.Occupation" />
+        <EntitySet Name="IncomeRanges" EntityType="WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences.IncomeRange" />
+        <EntitySet Name="EducationLevels" EntityType="WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences.EducationLevel" />
+        <EntitySet Name="MembershipPrograms" EntityType="WSVistaWebClient.ServiceContracts.OData.Loyalty.MembershipProgram" />
+        <EntitySet Name="LoyaltySettings" EntityType="WSVistaWebClient.ServiceContracts.OData.Loyalty.LoyaltySettings" />
+        <EntitySet Name="FilmGenres" EntityType="WSVistaWebClient.ServiceContracts.OData.FilmGenre" />
+        <EntitySet Name="Languages" EntityType="WSVistaWebClient.ServiceContracts.OData.Language" />
+        <EntitySet Name="AdvertisingProfiles" EntityType="WSVistaWebClient.ServiceContracts.OData.AdvertisingProfile" />
+        <EntitySet Name="AdvertisingMediaSets" EntityType="WSVistaWebClient.ServiceContracts.OData.AdvertisingMediaSet" />
+        <EntitySet Name="SalesProfiles" EntityType="WSVistaWebClient.ServiceContracts.OData.SalesProfile" />
+        <EntitySet Name="ScheduledFilmSalesProfileLinks" EntityType="WSVistaWebClient.ServiceContracts.OData.ScheduledFilmSalesProfileLink" />
+        <EntitySet Name="AdvanceBookingRules" EntityType="WSVistaWebClient.ServiceContracts.OData.AdvanceBookingRule" />
+        <EntitySet Name="AdvanceBookingRuleExceptions" EntityType="WSVistaWebClient.ServiceContracts.OData.AdvanceBookingRuleException" />
+        <EntitySet Name="PlayThroughSessions" EntityType="WSVistaWebClient.ServiceContracts.OData.PlayThroughSession" />
+        <EntitySet Name="SeasonPassDeals" EntityType="WSVistaWebClient.ServiceContracts.OData.SeasonPassDeal" />
+        <EntitySet Name="Clients" EntityType="WSVistaWebClient.ServiceContracts.OData.Client" />
+        <FunctionImport Name="GetLoyaltySettings" ReturnType="WSVistaWebClient.ServiceContracts.OData.Loyalty.LoyaltySettings" EntitySet="LoyaltySettings" m:HttpMethod="GET" />
+        <FunctionImport Name="GetMemberFieldSettings" ReturnType="WSVistaWebClient.ServiceContracts.OData.Loyalty.MemberFieldSettings" m:HttpMethod="GET">
+          <Parameter Name="posType" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetClient" ReturnType="WSVistaWebClient.ServiceContracts.OData.Client" EntitySet="Clients" m:HttpMethod="GET">
+          <Parameter Name="id" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetScheduledFilms" ReturnType="Collection(WSVistaWebClient.ServiceContracts.OData.ScheduledFilm)" EntitySet="ScheduledFilms" m:HttpMethod="GET">
+          <Parameter Name="siteGroupId" Type="Edm.String" />
+          <Parameter Name="cinemaId" Type="Edm.String" />
+          <Parameter Name="cinemaEventId" Type="Edm.String" />
+          <Parameter Name="attributeShortName" Type="Edm.String" />
+          <Parameter Name="userSessionId" Type="Edm.String" />
+          <Parameter Name="loyaltyMembershipId" Type="Edm.String" />
+          <Parameter Name="includeAdvanceSales" Type="Edm.Boolean" />
+        </FunctionImport>
+        <FunctionImport Name="GetNowShowingScheduledFilms" ReturnType="Collection(WSVistaWebClient.ServiceContracts.OData.ScheduledFilm)" EntitySet="ScheduledFilms" m:HttpMethod="GET">
+          <Parameter Name="siteGroupId" Type="Edm.String" />
+          <Parameter Name="cinemaId" Type="Edm.String" />
+          <Parameter Name="cinemaEventId" Type="Edm.String" />
+          <Parameter Name="attributeShortName" Type="Edm.String" />
+          <Parameter Name="userSessionId" Type="Edm.String" />
+          <Parameter Name="loyaltyMembershipId" Type="Edm.String" />
+          <Parameter Name="includeAdvanceSales" Type="Edm.Boolean" />
+          <Parameter Name="cinemaIds" Type="Edm.String" />
+          <Parameter Name="salesChannel" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetComingSoonScheduledFilms" ReturnType="Collection(WSVistaWebClient.ServiceContracts.OData.ScheduledFilm)" EntitySet="ScheduledFilms" m:HttpMethod="GET">
+          <Parameter Name="userSessionId" Type="Edm.String" />
+          <Parameter Name="loyaltyMembershipId" Type="Edm.String" />
+          <Parameter Name="cinemaIds" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetNowShowingSessions" ReturnType="Collection(WSVistaWebClient.ServiceContracts.OData.Session)" EntitySet="Sessions" m:HttpMethod="GET">
+          <Parameter Name="siteGroupId" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetSiteGroupsForCinema" ReturnType="Collection(WSVistaWebClient.ServiceContracts.OData.SiteGroup)" EntitySet="SiteGroups" m:HttpMethod="GET">
+          <Parameter Name="clientId" Type="Edm.String" />
+          <Parameter Name="cinemaHOPK" Type="Edm.String" />
+        </FunctionImport>
+        <FunctionImport Name="GetDeliveryWindowsForCinema" ReturnType="Collection(WSVistaWebClient.ServiceContracts.OData.DeliveryWindow)" m:HttpMethod="GET">
+          <Parameter Name="cinemaId" Type="Edm.String" />
+        </FunctionImport>
+        <AssociationSet Name="Cinema_ScheduledFilms" Association="WSVistaWebClient.ServiceContracts.OData.Cinema_ScheduledFilms">
+          <End Role="Cinema" EntitySet="Cinemas" />
+          <End Role="ScheduledFilms" EntitySet="ScheduledFilms" />
+        </AssociationSet>
+        <AssociationSet Name="Cinema_ScreenAttributes" Association="WSVistaWebClient.ServiceContracts.OData.Cinema_ScreenAttributes">
+          <End Role="Cinema" EntitySet="Cinemas" />
+          <End Role="ScreenAttributes" EntitySet="ScreenAttributes" />
+        </AssociationSet>
+        <AssociationSet Name="Cinema_ConceptAttributes" Association="WSVistaWebClient.ServiceContracts.OData.Cinema_ConceptAttributes">
+          <End Role="Cinema" EntitySet="Cinemas" />
+          <End Role="ConceptAttributes" EntitySet="Attributes" />
+        </AssociationSet>
+        <AssociationSet Name="ScheduledFilm_Sessions" Association="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm_Sessions">
+          <End Role="ScheduledFilm" EntitySet="ScheduledFilms" />
+          <End Role="Sessions" EntitySet="Sessions" />
+        </AssociationSet>
+        <AssociationSet Name="ScheduledFilm_FirstDaysSessions" Association="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm_FirstDaysSessions">
+          <End Role="ScheduledFilm" EntitySet="ScheduledFilms" />
+          <End Role="FirstDaysSessions" EntitySet="Sessions" />
+        </AssociationSet>
+        <AssociationSet Name="ScheduledFilm_FutureSessions" Association="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm_FutureSessions">
+          <End Role="ScheduledFilm" EntitySet="ScheduledFilms" />
+          <End Role="FutureSessions" EntitySet="Sessions" />
+        </AssociationSet>
+        <AssociationSet Name="ScheduledFilm_Cast" Association="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm_Cast">
+          <End Role="ScheduledFilm" EntitySet="ScheduledFilms" />
+          <End Role="Cast" EntitySet="FilmPersons" />
+        </AssociationSet>
+        <AssociationSet Name="ScheduledFilm_PlayThroughFilms" Association="WSVistaWebClient.ServiceContracts.OData.ScheduledFilm_PlayThroughFilms">
+          <End Role="ScheduledFilm" EntitySet="ScheduledFilms" />
+          <End Role="PlayThroughFilms" EntitySet="ScheduledFilms" />
+        </AssociationSet>
+        <AssociationSet Name="Session_Attributes" Association="WSVistaWebClient.ServiceContracts.OData.Session_Attributes">
+          <End Role="Session" EntitySet="Sessions" />
+          <End Role="Attributes" EntitySet="Attributes" />
+        </AssociationSet>
+        <AssociationSet Name="SiteGroup_Cinemas" Association="WSVistaWebClient.ServiceContracts.OData.SiteGroup_Cinemas">
+          <End Role="SiteGroup" EntitySet="SiteGroups" />
+          <End Role="Cinemas" EntitySet="Cinemas" />
+        </AssociationSet>
+        <AssociationSet Name="CinemaEvent_LinkedCinemas" Association="WSVistaWebClient.ServiceContracts.OData.CinemaEvent_LinkedCinemas">
+          <End Role="CinemaEvent" EntitySet="CinemaEvents" />
+          <End Role="LinkedCinemas" EntitySet="Cinemas" />
+        </AssociationSet>
+        <AssociationSet Name="PreferenceType_Preferences" Association="WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences.PreferenceType_Preferences">
+          <End Role="PreferenceType" EntitySet="PreferenceTypes" />
+          <End Role="Preferences" EntitySet="Preferences" />
+        </AssociationSet>
+        <AssociationSet Name="MembershipProgram_Club" Association="WSVistaWebClient.ServiceContracts.OData.Loyalty.MembershipProgram_Club">
+          <End Role="MembershipProgram" EntitySet="MembershipPrograms" />
+          <End Role="Club" EntitySet="Clubs" />
+        </AssociationSet>
+        <AssociationSet Name="SalesProfile_AdvanceBookingRule" Association="WSVistaWebClient.ServiceContracts.OData.SalesProfile_AdvanceBookingRule">
+          <End Role="SalesProfile" EntitySet="SalesProfiles" />
+          <End Role="AdvanceBookingRule" EntitySet="AdvanceBookingRules" />
+        </AssociationSet>
+        <AssociationSet Name="AdvanceBookingRule_AdvanceBookingRuleExceptions" Association="WSVistaWebClient.ServiceContracts.OData.AdvanceBookingRule_AdvanceBookingRuleExceptions">
+          <End Role="AdvanceBookingRule" EntitySet="AdvanceBookingRules" />
+          <End Role="AdvanceBookingRuleExceptions" EntitySet="AdvanceBookingRuleExceptions" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
