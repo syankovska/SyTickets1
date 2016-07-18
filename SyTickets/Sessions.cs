@@ -293,6 +293,11 @@ namespace SyTickets
            return  o.GeneratePdf(printStream,totalOrderCount);
         }
 
+        public System.IO.MemoryStream GeneratePkPass(string printStream, int passNum)
+        {
+            var o = new Order();
+            return o.GeneratePkPass(printStream, passNum);
+        }
         public List<string> GetCities()
         {
             var c = new Cinemas();

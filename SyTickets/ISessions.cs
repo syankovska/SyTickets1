@@ -81,6 +81,10 @@ namespace SyTickets
         [OperationContract]  [FaultContract(typeof(FaultException))]
         System.IO.MemoryStream GeneratePdf(string printStream, int totalOrderCount);
 
+        [OperationContract]
+        [FaultContract(typeof(FaultException))]
+        System.IO.MemoryStream GeneratePkPass(string printStream, int passNum);
+
         [OperationContract]  [FaultContract(typeof(FaultException))]
         List<string> GetCities();
 

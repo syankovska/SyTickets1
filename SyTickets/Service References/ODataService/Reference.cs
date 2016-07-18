@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 09.06.2016 12:23:21
+// Generation date: 18.07.2016 15:25:04
 namespace SyTickets.ODataService
 {
     
@@ -10630,7 +10630,7 @@ namespace SyTickets.ODataService
     }
 }
 // Original file name:
-// Generation date: 09.06.2016 12:23:22
+// Generation date: 18.07.2016 15:25:05
 namespace SyTickets.ODataService.WSVistaWebClient.DataTypes
 {
     
@@ -10696,7 +10696,7 @@ namespace SyTickets.ODataService.WSVistaWebClient.DataTypes
     }
 }
 // Original file name:
-// Generation date: 09.06.2016 12:23:22
+// Generation date: 18.07.2016 15:25:05
 namespace SyTickets.ODataService.WSVistaWebClient.DataTypes.Loyalty.CustomerRatings
 {
     
@@ -10846,7 +10846,7 @@ namespace SyTickets.ODataService.WSVistaWebClient.DataTypes.Loyalty.CustomerRati
     }
 }
 // Original file name:
-// Generation date: 09.06.2016 12:23:22
+// Generation date: 18.07.2016 15:25:05
 namespace SyTickets.ODataService.WSVistaWebClient.ServiceContracts.OData.Loyalty
 {
     
@@ -11967,7 +11967,7 @@ namespace SyTickets.ODataService.WSVistaWebClient.ServiceContracts.OData.Loyalty
     }
 }
 // Original file name:
-// Generation date: 09.06.2016 12:23:22
+// Generation date: 18.07.2016 15:25:05
 namespace SyTickets.ODataService.WSVistaWebClient.ServiceContracts.OData.Loyalty.Preferences
 {
     

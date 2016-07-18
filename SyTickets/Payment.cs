@@ -131,7 +131,8 @@ namespace SyTickets
         }
         public Payment()
         {
-            uri = new Uri("http://192.168.31.11:8008/Exec.php");
+            // uri = new Uri("http://192.168.31.11:8008/Exec.php");
+            uri = new Uri("https://payments.multiplex.ua/Exec.php");
         }
         public TaslinkOrderResponse GetTaslinkOrder(string amount, string uriUI)
         {
