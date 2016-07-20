@@ -67,31 +67,39 @@ namespace SyTickets
 
             request.UserSessionId = userSessionId;
             request.BookingNotes = bookingNotes;
-            PaymentInfo pi = new PaymentInfo();
-            pi.PaymentValueCents = paymentValueCents;
-            pi.PaymentSystemId = "-";
-            pi.PaymentTenderCategory = "CREDIT";
-            pi.BillFullOutstandingAmount = true;
-            pi.CardBalance = 0;
-            pi.CardNumber = "1111-1111-1111-1111";
-            pi.SaveCardToWallet = false;
+           PaymentInfo pi = new PaymentInfo();
+           pi.PaymentValueCents = paymentValueCents;
+           pi.PaymentSystemId = "-";
+           pi.PaymentTenderCategory = "CREDIT";
+
+           //pi.BillFullOutstandingAmount = true;
+            // pi.CardBalance = 0;
+            // pi.CardNumber = "1111-1111-1111-1111";
+            //pi.SaveCardToWallet = false;
             pi.BillingValueCents = paymentValueCents;
             request.PaymentInfo = new PaymentInfo();
             request.PaymentInfo = pi;
 
 
 
-            //          request.CustomerLanguageTag = 2;
+            //request.CustomerLanguageTag = 2;
             request.CustomerEmail = customerEmail;
             request.CustomerName = customerName;
             request.CustomerPhone = customerPhone;
             request.GeneratePrintStream = true;
             request.ReturnPrintStream = true;
             if (unpaidBooking)
+            { 
                 request.BookingMode = 1;
-            else request.BookingMode = 0;
+           //     request.UnpaidBooking = true;
+            }
+            else { 
+                request.BookingMode = 0;
+             //   request.UnpaidBooking = false;
+            }
             request.PrintTemplateName = "WWW_P@H";
 
+            
             request.BookingMode = 0;
             request.PrintStreamType = 1;
             request.GenerateConcessionVoucherPrintStream = false;
@@ -264,7 +272,7 @@ namespace SyTickets
                 }
 
                 Barcode barCode = pdf.Page.Barcode;
-                img = barcode.Encode(TYPE.CODE128B, barCode.Value);
+                img = barcode.Encode(TYPE.CODE39, barCode.Value);
                 XImage xImageBC;
 
                 using (MemoryStream ms = new MemoryStream())
@@ -395,7 +403,7 @@ namespace SyTickets
 
 
 
-            string appleCertPathMy = (currDir + "\\pass.cer");
+            string appleCertPathMy = (currDir + "\\pass.p12");
             request.Certificate = File.ReadAllBytes(appleCertPathMy); 
             request.CertificatePassword = "vista"; 
             string appleCertPath = (currDir + "\\AppleWWDRCA.cer");
@@ -441,7 +449,7 @@ namespace SyTickets
                 request.AddAuxiliaryField(new StandardField("seat", "seat", textAreaFound.Value, "", DataDetectorTypes.PKDataDetectorTypeCalendarEvent));
 
             if (pdf.Page.Barcode.Value != null)
-            request.AddBarCode(pdf.Page.Barcode.Value, BarcodeType.PKBarcodeFormatPDF417, "UTF-8", pdf.Page.Barcode.Value);
+            request.AddBarCode(pdf.Page.Barcode.Value, BarcodeType.PKBarcodeFormatQR, "UTF-8", pdf.Page.Barcode.Value);
 
 
             byte[] generatedPass = generator.Generate(request);
