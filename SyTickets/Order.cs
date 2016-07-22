@@ -68,15 +68,12 @@ namespace SyTickets
             request.UserSessionId = userSessionId;
             request.BookingNotes = bookingNotes;
            PaymentInfo pi = new PaymentInfo();
-           pi.PaymentValueCents = paymentValueCents;
-           pi.PaymentSystemId = "-";
-           pi.PaymentTenderCategory = "CREDIT";
+            pi.PaymentValueCents = paymentValueCents;
+            pi.PaymentSystemId = "-";
+            pi.PaymentTenderCategory = "CREDIT";
+            pi.BillFullOutstandingAmount = true;
+            pi.CardNumber = "1111-1111-1111-1111";
 
-           //pi.BillFullOutstandingAmount = true;
-            // pi.CardBalance = 0;
-            // pi.CardNumber = "1111-1111-1111-1111";
-            //pi.SaveCardToWallet = false;
-            pi.BillingValueCents = paymentValueCents;
             request.PaymentInfo = new PaymentInfo();
             request.PaymentInfo = pi;
 
@@ -88,20 +85,24 @@ namespace SyTickets
             request.CustomerPhone = customerPhone;
             request.GeneratePrintStream = true;
             request.ReturnPrintStream = true;
+            request.OptionalReturnMemberBalances = false;
             if (unpaidBooking)
             { 
                 request.BookingMode = 1;
-           //     request.UnpaidBooking = true;
+    //            request.PerformPayment = true;
+    //            request.UnpaidBooking = true;
             }
             else { 
                 request.BookingMode = 0;
-             //   request.UnpaidBooking = false;
+    ////            request.PerformPayment = true;
+                request.UnpaidBooking = false;
             }
             request.PrintTemplateName = "WWW_P@H";
 
             
             request.BookingMode = 0;
             request.PrintStreamType = 1;
+            
             request.GenerateConcessionVoucherPrintStream = false;
 
 
@@ -109,6 +110,9 @@ namespace SyTickets
             SyCompleteOrderResponse syCompleteOrderResponse = new SyCompleteOrderResponse();
             syCompleteOrderResponse.Result = respone.Result.ToString();
             syCompleteOrderResponse.PrintStream = respone.PrintStream;
+            syCompleteOrderResponse.VistaBookingId = respone.VistaBookingId;
+            syCompleteOrderResponse.VistaBookingNumber = respone.VistaBookingNumber;
+            syCompleteOrderResponse.VistaTransNumber = respone.VistaTransNumber;
             return (syCompleteOrderResponse);
         }
 
@@ -403,7 +407,7 @@ namespace SyTickets
 
 
 
-            string appleCertPathMy = (currDir + "\\pass.p12");
+            string appleCertPathMy = (currDir + "\\pass.cer");
             request.Certificate = File.ReadAllBytes(appleCertPathMy); 
             request.CertificatePassword = "vista"; 
             string appleCertPath = (currDir + "\\AppleWWDRCA.cer");

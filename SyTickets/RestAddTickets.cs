@@ -121,6 +121,8 @@ namespace SyTickets
             atrequest.SkipAutoAllocation = skipAutoAllocation;
             atrequest.IncludeSeatNumbers = true;
             atrequest.ReturnSeatDataFormat = 2;
+          //  atrequest.BookingMode = 0;
+
 
         var client = new RestSharp.RestClient(uri);
             var request = new RestRequest("/order/tickets", Method.POST);

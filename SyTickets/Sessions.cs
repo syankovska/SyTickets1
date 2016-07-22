@@ -131,6 +131,7 @@ namespace SyTickets
                    ,SessionAttributesNames = session.SessionAttributesNames.ToList()
                    ,CinemaName = GetCinemaByCinemaID(session.CinemaId)
                    ,ScheduledFilmTitle =GetFilmTitleByScheduledFilmId(session.ScheduledFilmId)
+                   ,ScreenName = session.ScreenName
                }).ToList();
             return lsSessions;
         }

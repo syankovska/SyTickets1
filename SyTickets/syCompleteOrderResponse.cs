@@ -12,6 +12,11 @@ namespace SyTickets
 
         [DataMember]
         public string PrintStream { get; set; }
-
+        [DataMember]
+        public string VistaBookingId { get; set; }
+        [DataMember]
+        public string VistaBookingNumber { get; set; }
+        [DataMember]
+        public string VistaTransNumber { get; set; }
     }
 }

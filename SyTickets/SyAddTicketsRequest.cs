@@ -42,6 +42,8 @@ public class SyAddTicketsRequest
     public bool IncludeSeatNumbers { get; set; }
     [DataMember]
     public int ReturnSeatDataFormat { get; set; }
+      //  [DataMember]
+      //public int BookingMode { get; set; }
     }
 
 [DataContract]

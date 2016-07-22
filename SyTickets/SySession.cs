@@ -49,6 +49,8 @@ namespace SyTickets
         [DataMember]
         public string ScheduledFilmTitle { get; set; }
 
+        [DataMember]
+        public string ScreenName { get; set; }
     }
 
  }
